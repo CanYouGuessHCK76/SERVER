@@ -20,7 +20,7 @@ let users = []
 
 io.on('connection', (socket) => {
 
-    console.log("user masok nih brokkk");
+    console.log("user masok nih brokkk", socket.id);
 
     socket.on('removeUserFromRoom', (socketId) => {
         console.log(socketId, 'Socket Id ini loh njaay yang mau dihapus');
@@ -50,6 +50,17 @@ io.on('connection', (socket) => {
     socket.on('GameStart', () => {
         io.emit('StartTheGame')
     })
+
+    socket.on('disconnect', () => {
+        console.log(`${socket.id} - User disconnected anjeeeeeeeerrrrrrrr`, socket.id);
+
+        
+        users = users.filter(user => user.socketId !== socket.id);
+        console.log(users, 'Users after disconnect yokssssss');
+
+        
+        io.emit('UsersRemaining', users);
+    });
 
 })
 
