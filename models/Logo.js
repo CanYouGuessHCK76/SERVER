@@ -14,10 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Logo.init({
-    name: DataTypes.STRING,
-    imageUrl: DataTypes.STRING,
-    commonName: DataTypes.STRING,
-    hint: DataTypes.STRING
+    name: DataTypes.TEXT,
+    imageUrl: DataTypes.TEXT,
+    commonName: DataTypes.TEXT,
+    hint: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Logo',
