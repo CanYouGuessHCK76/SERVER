@@ -1,7 +1,6 @@
 const express = require('express')
 const { createServer } = require('http')
 const { Server } = require('socket.io');
-const port = process.env.PORT || 3000
 const app = express()
 
 
@@ -54,7 +53,9 @@ io.on('connection', (socket) => {
 
 })
 
-httpServer.listen(port, () => console.log(`ANJAAY MABAR NIH BROK ${port}`));
+module.exports = app
+
+module.exports = httpServer
 
 
 
