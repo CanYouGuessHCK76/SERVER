@@ -42,11 +42,18 @@ io.on('connection', (socket) => {
     })
 
     socket.on('leaderBoard:broadcast', ({ username, score }) => {
-        leaderBoard.push({ username, score });
-        console.log(leaderBoard, '>>>>>>>>>>>>leaderBoard INIH WOI');
-
-        io.emit('shwoLeaderBoard:broadcast', leaderBoard)
-    })
+        const formattedDate = new Date().toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+        });
+    
+        leaderBoard.push({ username, score, time: formattedDate });
+        console.log(leaderBoard, '>>>>>>>>>>>> Updated leaderBoard');
+    
+        io.emit('showLeaderBoard:broadcast', leaderBoard);
+    });
+    
     socket.on('GameStart', () => {
         io.emit('StartTheGame')
     })
